@@ -4,7 +4,7 @@
     <title>Meu Site Moderno</title>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB24GRuSdov2z-1tZlFicI5S9mYgug5T9c"></script>
   </head>
-  <body>
+ <body onload="initMap()">
     <div id="mapa" style="width: 100%; height: 400px;"></div>
     <div id="menu-inferior">
       <button>TESTE</button>
@@ -13,4 +13,13 @@
       <button>Adicionar Ponto</button>
     </div>
   </body>
+    <script>
+    var map;
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('mapa'), {
+        center: {lat: -34.397, lng: 150.644},
+        zoom: 8
+      });
+    }
+  </script>
 </html>
