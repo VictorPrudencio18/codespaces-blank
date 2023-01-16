@@ -1,70 +1,30 @@
 <!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<!-- [START maps_drawing_tools] -->
 <html>
   <head>
-    <title>Meu Site Moderno</title>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB24GRuSdov2z-1tZlFicI5S9mYgug5T9c"></script>
-       <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <title>Drawing Tools</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
-      <style>
-      #menu-inferior {
-        display: flex;
-        justify-content: center;
-      }
-      button {
-        background-color: #4CAF50;
-        color: white;
-        padding: 10px 20px;
-        margin: 10px;
-        border: none;
-        cursor: pointer;
-      }
-      button:hover {
-        background-color: #3e8e41;
-      }
-    </style>
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script type="module" src="./index.js"></script>
   </head>
-  <body onload="initMap()">
-    <div id="map" style="width: 100%; height: 400px;"></div>
-    <div id="menu-inferior">
-      <button data-latitude="-34.397" data-longitude="150.644">Adicionar Ponto 1</button>
-      <button data-latitude="-35.397" data-longitude="151.644">Adicionar Ponto 2</button>
-      <button data-latitude="-36.397" data-longitude="152.644">Adicionar Ponto 3</button>
-    </div>
+  <body>
+    <div id="map"></div>
+
+    <!-- 
+      The `defer` attribute causes the callback to execute after the full HTML
+      document has been parsed. For non-blocking uses, avoiding race conditions,
+      and consistent behavior across browsers, consider loading using Promises
+      with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+      -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=drawing&v=weekly"
+      defer
+    ></script>
   </body>
- <script>
-function initMap() {
-  const map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: -34.397, lng: 150.644 },
-    zoom: 8,
-  });
-  const drawingManager = new google.maps.drawing.DrawingManager({
-    drawingMode: google.maps.drawing.OverlayType.MARKER,
-    drawingControl: true,
-    drawingControlOptions: {
-      position: google.maps.ControlPosition.TOP_CENTER,
-      drawingModes: [
-        google.maps.drawing.OverlayType.MARKER,
-        google.maps.drawing.OverlayType.CIRCLE,
-        google.maps.drawing.OverlayType.POLYGON,
-        google.maps.drawing.OverlayType.POLYLINE,
-        google.maps.drawing.OverlayType.RECTANGLE,
-      ],
-    },
-    markerOptions: {
-      icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
-    },
-    circleOptions: {
-      fillColor: "#ffff00",
-      fillOpacity: 1,
-      strokeWeight: 5,
-      clickable: false,
-      editable: true,
-      zIndex: 1,
-    },
-  });
-
-  drawingManager.setMap(map);
-}
-
-  </script>
 </html>
