@@ -40,8 +40,8 @@
     }
 
     function adicionarMarcador(element) {
-        var latitude = parseFloat(element.getAttribute("data-latitude"));
-        var longitude = parseFloat(element.getAttribute("data-longitude"));
+        var latitude = element.getAttribute("data-latitude");
+        var longitude = element.getattribute("data-longitude");
         var marker = new google.maps.Marker({
             position: {lat: latitude, lng: longitude},
             map: map
