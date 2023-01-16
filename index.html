@@ -30,27 +30,39 @@
     </div>
   </body>
  <script>
-    var map;
-    function initMap() {
-      map = new google.maps.Map(document.getElementById('mapa'), {
-        center: {lat: -34.397, lng: 150.644},
-        zoom: 8
-      });
-    }
+function initMap() {
+  const map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: -34.397, lng: 150.644 },
+    zoom: 8,
+  });
+  const drawingManager = new google.maps.drawing.DrawingManager({
+    drawingMode: google.maps.drawing.OverlayType.MARKER,
+    drawingControl: true,
+    drawingControlOptions: {
+      position: google.maps.ControlPosition.TOP_CENTER,
+      drawingModes: [
+        google.maps.drawing.OverlayType.MARKER,
+        google.maps.drawing.OverlayType.CIRCLE,
+        google.maps.drawing.OverlayType.POLYGON,
+        google.maps.drawing.OverlayType.POLYLINE,
+        google.maps.drawing.OverlayType.RECTANGLE,
+      ],
+    },
+    markerOptions: {
+      icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
+    },
+    circleOptions: {
+      fillColor: "#ffff00",
+      fillOpacity: 1,
+      strokeWeight: 5,
+      clickable: false,
+      editable: true,
+      zIndex: 1,
+    },
+  });
 
-    function adicionarMarcador(element) {
-        var latitude = element.getAttribute("data-latitude");
-        var longitude = element.getattribute("data-longitude");
-        var marker = new google.maps.Marker({
-            position: {lat: latitude, lng: longitude},
-            map: map
-        });
-    }
+  drawingManager.setMap(map);
+}
 
-    document.querySelectorAll("#menu-inferior button").forEach(function(button){
-        button.addEventListener("click", function(){
-            adicionarMarcador(this);
-        });
-    });
   </script>
 </html>
